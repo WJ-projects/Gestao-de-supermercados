@@ -42,3 +42,15 @@ class Funcao(models.Model):
     
     def __str__(self):
         return self.cargo
+
+
+class Cadastrar_produto(models.Model):
+    nome_produto = models.CharField(max_length=255, blank=False, null=False, verbose_name='Nome do produto')
+    valor = models.DecimalField(max_digits=6, decimal_places=2, blank=False, null=False, verbose_name='Valor do produto')
+    qtd = models.IntegerField(blank=True, null=False, default=0, verbose_name='Quantidade de produtos')
+    status = models.BooleanField(blank=False, null=False, default=False)
+    data_hora_cadastro = models.DateTimeField(auto_now_add=True, blank=True, null=False)
+
+
+    def __str__(self):
+        return self.nome_produto

@@ -16,3 +16,8 @@ class FuncionarioAdmin(admin.ModelAdmin):
     list_display = ("nome_funcionario", "cpf_funcionario", "email_funcionario", "codigo_de_contrato", "fk_funcao", "status")
 
 admin.site.register(Funcao)
+
+@admin.register(Cadastrar_produto)
+class Cadastrar_produtoAdmin(admin.ModelAdmin):
+    list_display = ("nome_produto", "valor", "qtd",  "status", "data_hora_cadastro")
+    search_fields = ("nome_produto",)
