@@ -21,3 +21,7 @@ admin.site.register(Funcao)
 class Cadastrar_produtoAdmin(admin.ModelAdmin):
     list_display = ("nome_produto", "valor", "qtd",  "status", "data_hora_cadastro")
     search_fields = ("nome_produto",)
+
+@admin.register(Venda)
+class VendaAdmin(admin.ModelAdmin):
+    list_display = ("comprador",  "produto_vendido", "qtd_itens", "observacao", "data_hora_venda")

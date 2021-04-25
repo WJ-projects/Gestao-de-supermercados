@@ -54,3 +54,18 @@ class Cadastrar_produto(models.Model):
 
     def __str__(self):
         return self.nome_produto
+
+
+class Venda(models.Model):
+    fk_comprador = models.ManyToManyField('Cliente', verbose_name='Clientes')
+    fk_cadastrar_produto = models.ManyToManyField('Cadastrar_produto', verbose_name='Produtos')
+    qtd_itens = models.IntegerField(blank=True, null=False, default=0, verbose_name='Quantidade de Itens Vendidos')
+    observacao = models.CharField(max_length=255, blank=False, null=False, verbose_name='Descrição da venda')
+    data_hora_venda = models.DateTimeField(auto_now_add=True, blank=True, null=False)
+
+
+    def comprador(self):
+        return ",".join([str(e) for e in self.fk_comprador.all()])
+
+    def produto_vendido(self):
+        return ",".join([str(a) for a in self.fk_cadastrar_produto.all()])
