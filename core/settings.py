@@ -44,6 +44,7 @@ MY_APPS = [
 ]
 
 THIDS_APPS = [
+    'cpf_field',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + MY_APPS + THIDS_APPS
