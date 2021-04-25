@@ -76,3 +76,16 @@ class Despesa(models.Model):
     valor = models.DecimalField(max_digits=12, decimal_places=2, blank=False, null=False, verbose_name='Valor total da despesa')
     observacao = models.TextField(blank=True, null=True, verbose_name='Observação')
     data_hora = models.DateTimeField(auto_now_add=True, blank=True, null=False)
+
+
+class Fornecedore(models.Model):
+    nome_fantasia = models.CharField(max_length=255, blank=False, null=False, verbose_name='Nome fantasia')
+    razao_social = models.CharField(max_length=255, blank=False, null=False, verbose_name='Razão social')
+    cnpj = models.CharField(max_length=18, blank=False, null=False, verbose_name='Nome completo')
+    email_fornecedo = models.EmailField(blank=True, null=True, verbose_name='E-mail')
+    fk_endereco = models.ManyToManyField('Endereco', verbose_name='Nome da rua e número da empresa')
+    observacao = models.TextField(max_length=255, blank=True, null=True, verbose_name='Observação')
+
+
+    def Nome_e_numero_da_empresa(self):
+        return ",".join([str(p) for p in self.fk_endereco.all()])

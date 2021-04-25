@@ -25,7 +25,11 @@ class Cadastrar_produtoAdmin(admin.ModelAdmin):
 @admin.register(Venda)
 class VendaAdmin(admin.ModelAdmin):
     list_display = ("comprador",  "produto_vendido", "qtd_itens", "observacao", "data_hora_venda")
-    
+
 @admin.register(Despesa)
 class DespesaAdmin(admin.ModelAdmin):
     list_display = ("nome_despesa",  "valor", "observacao", "data_hora")
+
+@admin.register(Fornecedore)
+class FornecedorAdmin(admin.ModelAdmin):
+    list_display = ("nome_fantasia",  "razao_social", "cnpj", "email_fornecedo", "observacao", "Nome_e_numero_da_empresa")
