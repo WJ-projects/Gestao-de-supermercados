@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cliente, Endereco
+from .models import Cliente, Endereco, Funcionario, Funcao, Cadastrar_produto, Venda, Despesa, Fornecedore
 
 # Register your models here.
 
@@ -10,3 +10,9 @@ class ClienteAdmin(admin.ModelAdmin):
 @admin.register(Endereco)
 class EnderecoAdmin(admin.ModelAdmin):
     list_display = ("nome_rua", "numero_casa", "bairro", "complemento", "cep",)
+
+@admin.register(Funcionario)
+class FuncionarioAdmin(admin.ModelAdmin):
+    list_display = ("nome_funcionario", "cpf_funcionario", "email_funcionario", "codigo_de_contrato", "fk_funcao", "status")
+
+admin.site.register(Funcao)
