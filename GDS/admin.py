@@ -25,3 +25,7 @@ class Cadastrar_produtoAdmin(admin.ModelAdmin):
 @admin.register(Venda)
 class VendaAdmin(admin.ModelAdmin):
     list_display = ("comprador",  "produto_vendido", "qtd_itens", "observacao", "data_hora_venda")
+    
+@admin.register(Despesa)
+class DespesaAdmin(admin.ModelAdmin):
+    list_display = ("nome_despesa",  "valor", "observacao", "data_hora")
