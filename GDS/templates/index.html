@@ -1,0 +1,255 @@
+
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar Cliente</h5>
+          <p class="card-text">
+            Cadastre aqui um novo <code>Cliente</code>.
+          </p>
+          <a href="{% url 'GDS:cadastrar_cliente' %}"
+             class="btn btn-warning">
+            Novo Cliente
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Listar Clientes</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Clientes</code> cadastrados.
+          </p>
+          <a href="{% url 'GDS:listar_cliente' %}"
+             class="btn btn-warning">
+            Consultar Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar Endereço</h5>
+          <p class="card-text">
+            Cadastre aqui um novo <code>Endereço</code>.
+          </p>
+          <a href="{% url 'GDS:cadastrar_endereco' %}"
+             class="btn btn-warning">
+            Novo Endereço
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Listar Endereços</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Endereços</code> cadastrados.
+          </p>
+          <a href="{% url 'GDS:listar_endereco' %}"
+             class="btn btn-warning">
+            Consultar Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar Funcionário</h5>
+          <p class="card-text">
+            Cadastre aqui um novo <code>Funcionário</code>.
+          </p>
+          <a href="{% url 'GDS:cadastrar_funcionario' %}"
+             class="btn btn-warning">
+            Novo Funcionário
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Listar Funcionários</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Funcionários</code> cadastrados.
+          </p>
+          <a href="{% url 'GDS:listar_funcionario' %}"
+             class="btn btn-warning">
+            Consultar Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar Cargos</h5>
+          <p class="card-text">
+            Cadastre aqui um novo <code>Cargos</code>.
+          </p>
+          <a href="{% url 'GDS:cadastrar_funcao' %}"
+             class="btn btn-warning">
+            Novo Cargo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Listar Cargos</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Cargos</code> cadastrados.
+          </p>
+          <a href="{% url 'GDS:listar_funcao' %}"
+             class="btn btn-warning">
+            Consultar Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar Produto</h5>
+          <p class="card-text">
+            Cadastre aqui um novo <code>Produto</code>.
+          </p>
+          <a href="{% url 'GDS:cadastrar_produto' %}"
+             class="btn btn-warning">
+            Novo Produto
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Listar Produtos</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Produtos</code> cadastrados.
+          </p>
+          <a href="{% url 'GDS:listar_produto' %}"
+             class="btn btn-warning">
+            Consultar Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar Venda</h5>
+          <p class="card-text">
+            Cadastre aqui uma nova <code>Venda</code>.
+          </p>
+          <a href="{% url 'GDS:cadastrar_venda' %}"
+             class="btn btn-warning">
+            Nova Venda
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Listar Venda</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Vendas</code> cadastradas.
+          </p>
+          <a href="{% url 'GDS:listar_venda' %}"
+             class="btn btn-warning">
+            Consultar Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar Despesa</h5>
+          <p class="card-text">
+            Cadastre aqui uma nova <code>Despesa</code>.
+          </p>
+          <a href="{% url 'GDS:cadastrar_despesa' %}"
+             class="btn btn-warning">
+            Nova Despesa
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Listar Despesas</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Despesas</code> cadastradas.
+          </p>
+          <a href="{% url 'GDS:listar_despesa' %}"
+             class="btn btn-warning">
+            Consultar Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar Fornecedor</h5>
+          <p class="card-text">
+            Cadastre aqui um novo <code>Fornecedor</code>.
+          </p>
+          <a href="{% url 'GDS:cadastrar_fornecedor' %}"
+             class="btn btn-warning">
+            Novo Fornecedor
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Listar Fornecedores</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Fornecedores</code> cadastradas.
+          </p>
+          <a href="{% url 'GDS:listar_fornecedor' %}"
+             class="btn btn-warning">
+            Consultar Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+    
+  </div>
+</div>
+{% endblock %}
+

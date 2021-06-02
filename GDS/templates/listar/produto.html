@@ -1,0 +1,68 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Produtos</h5>
+
+          {% if listar_produto|length > 0 %}
+            <p class="card-text">
+              Aqui está a lista de <code>Produtos</code> cadastrados.
+            </p>  
+
+            <table class="table">
+              <thead class="table-primary">
+                <tr>
+                  <th>Nome</th>
+                  <th>Valor</th>
+                  <th>Quantidade</th>
+                  <th class=" text-center">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for listar_produto in listar_produto %}
+                  <tr>
+                    <td>{{ listar_produto.nome_produto }}</td>
+                    <td>{{ listar_produto.valor }}</td>
+                    <td>{{ listar_produto.qtd }}</td>
+                    <td class=" text-center">
+                      <a class="btn btn-info" href="{% url 'GDS:detalhe_produto' listar_produto.pk %}"><i class="bi bi-plus-lg" title="Detalhes Produto"></i></a>
+                      <a class="btn btn-primary" href="{% url 'GDS:atualizar_produto' listar_produto.pk %}"><i class="bi bi-pencil-square" title="Atualizar Produto"></i></a>
+                      <a class="btn btn-danger" href="#" onclick="Excluir_produto({{ listar_produto.pk }})"><i class="bi bi-trash" title="Excluir Produto"></i></a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          {% else %}
+            <div class="text-center mt-5 mb-5 jumbotron">
+              <h5>Nenhum <code>Produto</code> cadastrado ainda.</h5>
+            </div>
+          {% endif %}
+
+          {% include 'recursos/html/paginator.html' %}
+
+          {% include 'recursos/js/alerts.js' %}
+
+          <div class="text-right">
+            <a href="{% url 'GDS:cadastrar_produto' %}" class="btn btn-warning">
+              Cadastrar Produto
+            </a>
+            <a class="btn btn-outline-info" href="{% url 'GDS:index' %}">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

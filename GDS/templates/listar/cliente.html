@@ -1,0 +1,88 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Clientes</h5>
+
+          {% if listar_cliente|length > 0 %}
+            <p class="card-text">
+            Aqui está a lista de <code>Clientes</code> cadastrados.
+            </p>
+            
+            <table class="table">
+                <thead class="table-primary">
+                    <tr>
+                      <th>Nome</th>
+                      <th>Cpf</th>
+                      <th>Email</th>
+                      <th>Endereço</th>
+                      <th class=" text-center">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for listar_cliente in listar_cliente %}
+                    <tr>
+                      {% if listar_cliente.nome|length > 10 %}
+                      <td>{{ listar_cliente.nome|slice:":15" }}...</td>
+                      {% else %}
+                      <td>{{ listar_cliente.nome|slice:":15" }}</td>
+                      {% endif %}
+
+                      <td>{{ listar_cliente.cpf }}</td>
+
+                      {% if listar_cliente.email_cliente|length > 10 %}
+                      <td>{{ listar_cliente.email_cliente|slice:":15" }}...</td>
+                      {% else %}
+                      <td>{{ listar_cliente.email_cliente|slice:":15" }}</td>
+                      {% endif %}
+
+                      {% for obj in listar_cliente.fk_endereco.all %}
+                      {% if obj.nome_rua|length > 10 %}
+                      <td>{{ obj.nome_rua|slice:":15" }}...</td>
+                      {% else %}
+                      <td>{{ obj.nome_rua|slice:":15" }}</td>
+                      {% endif %}
+                      {% endfor %}
+
+                      <td class=" text-center">                        
+                        <a class="btn btn-info" href="{% url 'GDS:detalhe_cliente' listar_cliente.pk %}"><i class="bi bi-plus-lg" title="Detalhes Cliente"></i></a>
+                        <a class="btn btn-primary" href="{% url 'GDS:atualizar_cliente' listar_cliente.pk %}"><i class="bi bi-pencil-square" title="Atualizar Cliente"></i></a>   
+                        <a class="btn btn-danger" href="#" onclick="Excluir_cliente({{ listar_cliente.pk }})"><i class="bi bi-trash" title="Excluir Cliente"></i></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          
+          {% else %}
+            <div class="text-center mt-5 mb-5 jumbotron">
+              <h5>Nenhum <code>Cliente</code> cadastrado ainda.</h5>
+            </div>
+          {% endif %}
+          
+          {% include 'recursos/html/paginator.html' %}
+
+          {% include 'recursos/js/alerts.js' %}
+
+          <div class="text-right">
+            <a href="{% url 'GDS:cadastrar_cliente' %}" class="btn btn-warning">
+              Cadastrar Cliente
+            </a>
+            <a class="btn btn-outline-info" href="{% url 'GDS:index' %}">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

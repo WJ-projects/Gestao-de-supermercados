@@ -1,0 +1,35 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Atualizar Venda</h5>
+            <p class="card-text">
+              Altere os campos que deseja 
+               <code>Atualizar</code>.
+            </p>
+            <form method="post">
+              <!-- Não se esqueça dessa tag -->
+              {% csrf_token %}
+  
+              {{ form|bootstrap }}
+  
+              <button class="btn btn-warning">Atualizar</button>
+              <a class="btn btn-outline-info" href="{% url 'GDS:listar_venda' %}">Voltar</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+
+
+

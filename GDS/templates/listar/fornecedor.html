@@ -1,0 +1,106 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Fornecedores</h5>
+
+          {% if listar_fornecedor|length > 0 %}
+            <p class="card-text">
+              Aqui está a lista de <code>Fornecedores</code> cadastrados.
+            </p>  
+
+            <table class="table">
+              <thead class="table-primary">
+                <tr>
+                  <th>Nome Fantasia</th>
+                  <th>Razão Social</th>
+                  <th>Cnpj</th>
+                  <th>E-mail</th>
+                  <th>Endereço</th>
+                  <th>Observação</th>
+                  <th class=" text-center">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for listar_fornecedor in listar_fornecedor %}
+                  <tr>
+                    {% if listar_fornecedor.nome_fantasia|length > 10 %}
+                    <td>{{ listar_fornecedor.nome_fantasia|slice:":15" }}...</td>
+                    {% else %}
+                    <td>{{ listar_fornecedor.nome_fantasia|slice:":15" }}</td>
+                    {% endif %}
+                    
+                    {% if listar_fornecedor.razao_social|length > 10 %}
+                    <td>{{ listar_fornecedor.razao_social|slice:":15" }}...</td>
+                    {% else %}
+                    <td>{{ listar_fornecedor.razao_social|slice:":15" }}</td>
+                    {% endif %}
+
+                    {% if listar_fornecedor.cnpj|length > 10 %}
+                    <td>{{ listar_fornecedor.cnpj|slice:":15" }}...</td>
+                    {% else %}
+                    <td>{{ listar_fornecedor.cnpj|slice:":15" }}</td>
+                    {% endif %}
+
+                    {% if listar_fornecedor.email_fornecedo|length > 10 %}
+                    <td>{{ listar_fornecedor.email_fornecedo|slice:":15" }}...</td>
+                    {% else %}
+                    <td>{{ listar_fornecedor.email_fornecedo|slice:":15" }}</td>
+                    {% endif %}
+
+                    {% for obj in listar_fornecedor.fk_endereco.all %}
+                    {% if obj.nome_rua|length > 10 %}
+                    <td>{{ obj.nome_rua|slice:":15" }}...</td>
+                    {% else %}
+                    <td>{{ obj.nome_rua|slice:":15" }}</td>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if listar_fornecedor.observacao|length > 10 %}
+                    <td>{{ listar_fornecedor.observacao|slice:":15" }}...</td>
+                    {% else %}
+                    <td>{{ listar_fornecedor.observacao|slice:":15" }}</td>
+                    {% endif %}
+                    
+                    <td class=" text-center">
+                      <a class="btn btn-info" href="{% url 'GDS:detalhe_fornecedor' listar_fornecedor.pk %}"><i class="bi bi-plus-lg" title="Detalhes Fornecedor"></i></a>
+                      <a class="btn btn-primary" href="{% url 'GDS:atualizar_fornecedor' listar_fornecedor.pk %}"><i class="bi bi-pencil-square" title="Atualizar Fornecedor"></i></a>   
+                      <a class="btn btn-danger" href="#" onclick="Excluir_fornecedor({{ listar_fornecedor.pk }})"><i class="bi bi-trash" title="Excluir Fornecedor"></i></a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          {% else %}
+            <div class="text-center mt-5 mb-5 jumbotron">
+              <h5>Nenhum <code>Fornecedor</code> cadastrado ainda.</h5>
+            </div>
+          {% endif %}
+
+          {% include 'recursos/html/paginator.html' %}
+
+          {% include 'recursos/js/alerts.js' %}
+
+          <div class="text-right">
+            <a href="{% url 'GDS:cadastrar_fornecedor' %}" class="btn btn-warning">
+              Cadastrar Fornecedor
+            </a>
+            <a class="btn btn-outline-info" href="{% url 'GDS:index' %}">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

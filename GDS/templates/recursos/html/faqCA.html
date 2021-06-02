@@ -1,0 +1,61 @@
+{% block content %}
+<style type="text/css">
+    section#conteudo{     
+        width: 100%;     
+        
+    } 
+    iframe#frame-spec{     
+        width: 100%;     
+        height: 90vh;    
+        border: none;    
+        overflow-y: hidden;
+        overflow-x: hidden;
+    } 
+    
+    .txt-hdr{
+        padding: 20px;
+    }
+
+    .btn{
+        text-decoration: none;
+    }
+
+    .btn:link, .btn:active{
+        text-decoration: none;
+    }
+    .btn:hover{
+        text-decoration: none;
+    }
+
+
+
+    /* FAQ */
+
+    .linha{
+        border-color: #58cce3;
+        padding: 0px;
+        width: 10%;
+        border-width: 2px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <article id="cadastro">
+                <h3 class="text-center">Sessão de Cadastro</h3>
+                <hr class="linha">
+                <img class="img-fluid" src="https://i.imgur.com/wfspxY2.png" alt="cadastro">
+                <section class="exemp" id="exCad">
+                    <p><button type="button" class="btn btn-outline-info">Listar Cliente</button> - Lista os cliente cadastrado.</p>
+                    <p><button type="button" class="btn btn-warning">Cadastrar Endereço</button> - Caso o endereço desejado não estaja na lista, clique no botão e cadastre um novo endereço.</p>
+                    <p><button type="button" class="btn btn-warning"> Realizar Venda</button> -  Redireciona você para a pagina de vendas.</p>
+                    <p><button type="button" class="btn btn-warning">Cadastrar Cliente</i></button> -  Clique no botão para efetuar o cadastro de um novo cliente</p>
+        
+                    <p><code>OBS:</code> Todos os campos devem ser preemchidos</p>
+                </section>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}

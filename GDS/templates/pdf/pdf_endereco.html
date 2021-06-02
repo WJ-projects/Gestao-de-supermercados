@@ -1,0 +1,64 @@
+{% extends "easy_pdf/base.html" %}
+
+
+{% block extra_style %}
+    <style type="text/css">
+        #body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;  
+        }
+        .title span {
+            color: #007cae;
+        }
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+                
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<meta charset="utf-8">
+
+<div id="body">
+    
+
+    <div class='wrapper'>
+        <div class='header'>
+            <p class='title'>Recibo de Cliente Número {{ object.pk }}</p>
+        </div>
+    <div>
+    
+    <div class='details'>
+        <p><b>Rua:</b>  {{ object.nome_rua }}</p>
+        <p><b>Numero:</b>  {{ object.numero_casa }}</p>
+        <p><b>Bairro:</b>  {{ object.bairro }}</p>
+        <p><b>Cep:</b>  {{ object.cep }}</p>
+        <p><b>Complemento:</b>  {{ object.complemento }}</p>
+        <hr class='hrItem' />
+    </div>
+
+</div>
+{% endblock %}
