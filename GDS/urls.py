@@ -1,6 +1,5 @@
 from django.urls import path
 from GDS.views import (
-    FaqCreateView,
     IndexTemplateView
     , ClienteListView
     , ClienteUpdateView
