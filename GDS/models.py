@@ -1,5 +1,7 @@
 from django.db import models
 from cpf_field.models import CPFField
+from django.db.models.enums import Choices
+from django.db.models.fields import CharField
 
 # Create your models here.
 
@@ -33,7 +35,13 @@ class Funcionario(models.Model):
     email_funcionario = models.EmailField(blank=True, null=True, verbose_name='E-mail')
     codigo_de_contrato = models.CharField(max_length=11, blank=False, null=False, verbose_name='Código do contrato')
     fk_funcao = models.ForeignKey('Funcao', on_delete=models.DO_NOTHING, default=1, verbose_name='Cargo')
-    status = models.BooleanField(blank=False, null=False, default=False, verbose_name='Situação')
+    Sim = 'Sim'
+    Nao = 'Não'
+    status_choices = [
+        ( Sim, 'SIM'),
+        ( Nao, 'NÃO')
+    ]
+    status = models.CharField(choices=status_choices, max_length=3, verbose_name='Empregado')
 
 
 
@@ -60,7 +68,7 @@ class Venda(models.Model):
     fk_comprador = models.ManyToManyField('Cliente', verbose_name='Clientes')
     fk_cadastrar_produto = models.ManyToManyField('Cadastrar_produto', verbose_name='Produtos')
     qtd_itens = models.IntegerField(blank=True, null=False, default=0, verbose_name='Quantidade de Itens Vendidos')
-    observacao = models.CharField(max_length=255, blank=False, null=False, verbose_name='Descrição da venda')
+    observacao = models.TextField(max_length=255, blank=True, null=False, verbose_name='Descrição da venda')
     data_hora_venda = models.DateTimeField(auto_now_add=True, blank=True, null=False)
 
 
@@ -81,7 +89,7 @@ class Despesa(models.Model):
 class Fornecedore(models.Model):
     nome_fantasia = models.CharField(max_length=255, blank=False, null=False, verbose_name='Nome fantasia')
     razao_social = models.CharField(max_length=255, blank=False, null=False, verbose_name='Razão social')
-    cnpj = models.CharField(max_length=18, blank=False, null=False, verbose_name='Nome completo')
+    cnpj = models.CharField(max_length=18, blank=False, null=False, verbose_name='CNPJ')
     email_fornecedo = models.EmailField(blank=True, null=True, verbose_name='E-mail')
     fk_endereco = models.ManyToManyField('Endereco', verbose_name='Nome da rua e número da empresa')
     observacao = models.TextField(max_length=255, blank=True, null=True, verbose_name='Observação')
@@ -89,3 +97,8 @@ class Fornecedore(models.Model):
 
     def Nome_e_numero_da_empresa(self):
         return ",".join([str(p) for p in self.fk_endereco.all()])
+
+
+class Faq(models.Model):
+    situacao = models.TextField(max_length=255, blank=True, null=True, verbose_name='Situação')
+    data_hora_postagem = models.DateTimeField(auto_now_add=True, blank=True, null=False)
