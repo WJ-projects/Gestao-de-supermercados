@@ -1,0 +1,66 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Funcionário</h5>
+
+          {% if listar_funcionario|length > 0 %}
+            <p class="card-text">
+              Aqui está a lista de <code>Funcionário</code> cadastrados.
+            </p>
+
+            <table class="table">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cargo</th>
+                        <th class=" text-center">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for listar_funcionario in listar_funcionario %}
+                    <tr>
+                        <td>{{ listar_funcionario.nome_funcionario }}</td>
+                        <td>{{ listar_funcionario.fk_funcao }}</td>
+                        <td class=" text-center">
+                          </a>
+                          <a class="btn btn-info" href="{% url 'GDS:detalhe_funcionario' listar_funcionario.pk %}"><i class="bi bi-plus-lg" title="Detalhes Funcionário"></i></a>
+                          <a class="btn btn-primary" href="{% url 'GDS:atualizar_funcionario' listar_funcionario.pk %}"><i class="bi bi-pencil-square" title="Atualizar Funcionário"></i></a>
+                          <a class="btn btn-danger" href="#" onclick="Excluir_funcionario({{ listar_funcionario.pk }})"><i class="bi bi-trash" title="Excluir Funcionário"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+          {% else %}
+            <div class="text-center mt-5 mb-5 jumbotron">
+              <h5>Nenhum <code>Funcionário</code> cadastrado ainda.</h5>
+            </div>
+          {% endif %}
+
+          {% include 'recursos/html/paginator.html' %}
+
+          {% include 'recursos/js/alerts.js' %}
+
+          <div class="text-right">
+            <a href="{% url 'GDS:cadastrar_funcionario' %}" class="btn btn-warning">
+              Cadastrar Endereço
+            </a>
+            <a class="btn btn-outline-info" href="{% url 'GDS:index' %}">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Vendas</h5>
+
+          {% if listar_venda|length > 0 %}
+            <p class="card-text">
+            Aqui está a lista de <code>vendas</code> realizadas.
+            </p>
+
+            <table class="table">
+              <thead class="table-primary">
+                <tr>
+                  <th>Comprador</th>
+                  <th>Produto</th>
+                  <th>Quantidade de Produtos</th>
+                  <th>Descrição da Venda</th>                            
+                  <th class=" text-center">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                  {% for listar_venda in listar_venda %}
+                  <tr>
+                    {% for listar_v in listar_venda.fk_comprador.all %}
+                    {% if listar_v.nome|length > 10 %}
+                    <td>{{ listar_v.nome|slice:":15" }}...</td>
+                    {% else %}
+                    <td>{{ listar_v.nome|slice:":15" }}</td>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for listar_v in listar_venda.fk_cadastrar_produto.all %}
+                    <td>{{ listar_v.nome_produto }}</td>
+                    {% endfor %}
+
+                    <td>{{ listar_venda.qtd_itens }}</td>
+                    <td>{{ listar_venda.observacao }}</td>
+
+
+                    <td class=" text-center">
+                      <a class="btn btn-info" href="{% url 'GDS:detalhe_venda' listar_venda.pk %}"><i class="bi bi-plus-lg" title="Detalhes Venda"></i></a>
+                      <a class="btn btn-primary" href="{% url 'GDS:atualizar_venda' listar_venda.pk %}"><i class="bi bi-pencil-square" title="Atualizar Venda"></i></a>
+                      <a class="btn btn-danger" href="#" onclick="Excluir_venda({{ listar_venda.pk }})"><i class="bi bi-trash" title="Excluir Venda"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+          
+          {% else %}
+          <div class="text-center mt-5 mb-5 jumbotron">
+            <h5>Nenhuma <code>Venda</code> cadastrado ainda.</h5>
+          </div>
+          {% endif %}
+          
+          {% include 'recursos/html/paginator.html' %}
+
+          {% include 'recursos/js/alerts.js' %}
+
+          <div class="text-right">
+            <a href="{% url 'GDS:cadastrar_venda' %}" class="btn btn-warning">
+              Cadastrar Venda
+            </a>
+            <a class="btn btn-outline-info" href="{% url 'GDS:index' %}">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Endereço</h5>
+
+          {% if listar_endereco|length > 0 %}
+            <p class="card-text">
+              Aqui está a lista de <code>Endereço</code> cadastrados.
+            </p>
+
+            <table class="table">
+              <thead class="table-primary">
+                <tr>
+                  <th>Nome da Rua</th>
+                  <th>Número</th>
+                  <th>Bairro</th>
+                  <th class=" text-left">Cep</th>
+                  <th>Complemento</th>
+                  <th class=" text-center">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for listar_endereco in listar_endereco %}
+                <tr>
+                  {% if listar_endereco.nome_rua|length > 10 %}
+                  <td>{{ listar_endereco.nome_rua|slice:":15" }}...</td>
+                  {% else %}
+                  <td>{{ listar_endereco.nome_rua|slice:":15" }}</td>
+                  {% endif %}
+
+                  <td>{{ listar_endereco.numero_casa }}</td>
+
+                  {% if listar_endereco.bairro|length > 10 %}
+                  <td>{{ listar_endereco.bairro|slice:":10" }}...</td>
+                  {% else %}
+                  <td>{{ listar_endereco.bairro|slice:":10" }}</td>
+                  {% endif %}
+
+
+                  <td>{{ listar_endereco.cep }}</td>
+                  <td>{{ listar_endereco.complemento }}</td>
+
+                  <td class=" text-center">
+                    <a class="btn btn-info" href="{% url 'GDS:detalhe_endereco' listar_endereco.pk %}"><i class="bi bi-plus-lg" title="Detalhes Endereço"></i></a>
+                    <a class="btn btn-primary" href="{% url 'GDS:atualizar_endereco' listar_endereco.pk %}"><i class="bi bi-pencil-square" title="Atualizar Endereço"></i></a>   
+                    <a class="btn btn-danger" href="#" onclick="Excluir_endereco({{ listar_endereco.pk }})"><i class="bi bi-trash" title="Excluir Endereço"></i></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          {% else %}
+            <div class="text-center mt-5 mb-5 jumbotron">
+              <h5>Nenhum <code>Endereço</code> cadastrado ainda.</h5>
+            </div>
+          {% endif %}
+
+          {% include 'recursos/html/paginator.html' %}
+
+          {% include 'recursos/js/alerts.js' %}
+          <div class="text-right">
+            <a href="{% url 'GDS:cadastrar_endereco' %}" class="btn btn-warning">
+              Cadastrar Endereço
+            </a>
+            <a class="btn btn-outline-info" href="{% url 'GDS:index' %}">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

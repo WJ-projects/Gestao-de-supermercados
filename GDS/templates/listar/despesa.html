@@ -1,0 +1,75 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Despesas</h5>
+
+          {% if listar_despesa|length > 0 %}
+            <p class="card-text">
+              Aqui está a lista de <code>Despesas</code> cadastradas.
+            </p>
+
+            <table class="table">
+              <thead class="table-primary">
+                <tr>
+                  <th>Nome da Despesa</th>
+                  <th>Valor</th>
+                  <th>observaçao</th>
+                  <th>Data e Hora</th>                        
+                  <th class=" text-center">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                  {% for listar_despesa in listar_despesa %}
+                  <tr>
+                    <td>{{ listar_despesa.nome_despesa }}</td>
+                    <td>{{ listar_despesa.valor }}</td>
+                    
+                    {% if listar_despesa.observacao|length > 10 %}
+                    <td>{{ listar_despesa.observacao|slice:":15" }}...</td>
+                    {% else %}
+                    <td>{{ listar_despesa.observacao|slice:":15" }}</td>
+                    {% endif %}
+                    
+                    <td>{{ listar_despesa.data_hora }}</td>                        
+                    <td class=" text-center">
+                      <a class="btn btn-info" href="{% url 'GDS:detalhe_despesa' listar_despesa.pk %}"><i class="bi bi-plus-lg" title="Detalhes Endereço"></i></a>
+                      <a class="btn btn-primary" href="{% url 'GDS:atualizar_despesa' listar_despesa.pk %}"><i class="bi bi-pencil-square" title="Atualizar Despesa"></i></a>   
+                      <a class="btn btn-danger" href="#" onclick="Excluir_despesa({{ listar_despesa.pk }})"><i class="bi bi-trash" title="Excluir Despesa"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+
+          {% else %}
+            <div class="text-center mt-5 mb-5 jumbotron">
+              <h5>Nenhuma <code>Despesa</code> cadastrada ainda.</h5>
+            </div>
+          {% endif %}
+          
+          {% include 'recursos/html/paginator.html' %}
+
+          {% include 'recursos/js/alerts.js' %}
+          
+          <div class="text-right">
+            <a href="{% url 'GDS:cadastrar_despesa' %}" class="btn btn-warning">
+              Cadastrar Despesa
+            </a>
+            <a class="btn btn-outline-info" href="{% url 'GDS:index' %}">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

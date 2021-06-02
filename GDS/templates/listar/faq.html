@@ -1,0 +1,114 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+
+{% block content %}
+
+<div class="container pt">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h2 class="text-center"><i class="bi bi-chat-right-dots"></i>FAQ</h2>
+                    <h3 class="text-center">Perguntas Frequentes</h3> 
+                    <hr class="linha">
+
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                <button class="btn btn-link collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Cadastrar ou Consultar Clientes
+                                </button>
+                                </h5>
+                            </div>
+                        
+                            <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                
+                                    <section id="conteudo">
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Cadastrar Clientes</h5>
+                                                        <p class="card-text">Cadastre aqui um novo <code>cliente</code>.</p>
+                                                        <a href="" class="btn btn-danger" target="janela">Cadastrar Clientes</a>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% include 'recursos/html/faqCA.html' %}
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Listar Clientes</h5>
+                                                        <p class="card-text">Veja aqui a lista de <code>clientes</code> cadastrados.</p>
+                                                        <a href="" class="btn btn-danger" target="janela">Consultar Lista </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% include 'recursos/html/faqCO.html' %}
+                                        </div>
+                                    </section>
+                                    
+                                </div>
+                            </div>
+                        </div>        
+                        
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Oque é GDS?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    GDS é um sistema de controle para supermecado, voltado para gerenciamento de funcionarios, estoques, clientes, despesas e fornecedores. Sistema voltado para facilitar o controle de dados do supermercado.  
+                                </div>
+                            </div>
+                        </div>
+              
+                        <div class="card">
+                            <div class="card-header" id="heading3">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                        GDS contem controle financeiro?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    No momento ainda não, mais nossa equipe está trabalhando para implementar esta nova função. Mais o sistema contem o controle de estoque. 
+                                </div>
+                            </div>
+                        </div>
+              
+                        <div class="card">
+                            <div class="card-header" id="heading4">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                        GDS contem controle de Despesas?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Sim, lá você pode cadastrar suas despesas e ter o controle delas.
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

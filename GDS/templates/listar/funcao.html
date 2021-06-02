@@ -1,0 +1,62 @@
+{% extends 'recursos/html/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+<div class="container pt">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Cargos</h5>
+
+          {% if listar_funcao|length > 0 %}
+            <p class="card-text">
+              Aqui está a lista de <code>Cargos</code> cadastradas.
+            </p>
+
+            <table class="table">
+              <thead class="table-primary">
+                <tr>
+                  <th>Cargos</th>                      
+                  <th class=" text-center">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                  {% for listar_funcao in listar_funcao %}
+                  <tr>
+                    <td>{{ listar_funcao.cargo }}</td>                      
+                    <td class=" text-center">
+                      <a class="btn btn-primary" href="{% url 'GDS:atualizar_funcao' listar_funcao.pk %}"><i class="bi bi-pencil-square" title="Atualizar Cargo"></i></a>   
+                      <a class="btn btn-danger" href="#" onclick="Excluir_funcao({{ listar_funcao.pk }})"><i class="bi bi-trash" title="Excluir Cargo"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+
+          {% else %}
+            <div class="text-center mt-5 mb-5 jumbotron">
+              <h5>Nenhum <code>Cargo</code> cadastrado ainda.</h5>
+            </div>
+          {% endif %}
+          
+          {% include 'recursos/html/paginator.html' %}
+
+          {% include 'recursos/js/alerts.js' %}
+          
+          <div class="text-right">
+            <a href="{% url 'GDS:cadastrar_funcao' %}" class="btn btn-warning">
+              Cadastrar Cargo
+            </a>
+            <a class="btn btn-outline-info" href="{% url 'GDS:index' %}">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
